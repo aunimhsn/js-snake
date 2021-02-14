@@ -2,16 +2,23 @@ import { Game } from './Game';
 
 let _APP = null;
 
-class Snake extends Game {
+class SnakeJS extends Game {
 
     constructor() {
         super();
     }
 
+    Play() {
+        setInterval(() => {
+            this.Game();
+        }, 100)
+    }
+
 }
 
-function _Main() {
-    _APP = new Snake();
+function Main() {
+    _APP = new SnakeJS();
+    _APP.Play();
 }
 
-_Main();
+Main();

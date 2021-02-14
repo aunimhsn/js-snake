@@ -1,31 +1,27 @@
+import { Control } from './Control';
 import { Draw } from './Draw';
 import { Snake } from './Snake';
 
 export class Game {
 
     constructor() {
-        this._Initialize()
-        
-        this._Draw = new Draw(this._canvas);
-        this._Draw.Draw({
-            color: '#ffffff', 
-            x: 0, 
-            y: 0, 
-            width: this._canvasWidth, 
-            height: this._canvasHeight
-        });
+        // Canvas
+        this._Draw = new Draw(document.getElementById('snake'));
 
-        this._Draw.Draw(Snake.GetConfig());
+        // Background
+        this._Draw.DrawRectangle(this._Draw.Background())
+
+        // Snake
+        this._Snake = new Snake();
+        this._Draw.DrawRectangle(this._Snake.DrawConfig());
+
+        // Control
+        this._Control = new Control();
+        this._Control.EventHandler();
     }
 
-    _Initialize() {
-        this._canvas = document.getElementById('snake');
-        this._canvasWidth = this._canvas.width;
-        this._canvasHeight = this._canvas.height;
-        this._ctx = this._canvas.getContext('2d');
-        this._scale = 10;
-        this._rows = this._canvasHeight / this._scale;
-        this._columns = this._canvasWidth / this._scale;
+    Game() {
+        this._Snake.Move(this._Control.GetCurrentDirection());
     }
 
 }

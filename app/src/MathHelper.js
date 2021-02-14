@@ -6,8 +6,8 @@ export class MathHelper {
 
     /**
      * 
-     * @param { Minimum value is inclusive } min 
-     * @param { Maximum value is exclusive } max 
+     * @param {number} min Minimum value is inclusive
+     * @param {number} max Maximum Value is exclusive
      */
     static GetRandomInt(min, max) {
         min = Math.ceil(min);
