@@ -1,5 +1,5 @@
 import { Draw } from './Draw';
-import { MathHelper } from './MathHelper';
+import { Snake } from './Snake';
 
 export class Game {
 
@@ -15,13 +15,7 @@ export class Game {
             height: this._canvasHeight
         });
 
-        this._Draw.Draw({
-            color: '#333333', 
-            x: MathHelper.GetRandomInt(0, this._rows) * this._scale,
-            y: MathHelper.GetRandomInt(0, this._columns) * this._scale, 
-            width: 10, 
-            height: 10
-        });
+        this._Draw.Draw(Snake.GetConfig());
     }
 
     _Initialize() {

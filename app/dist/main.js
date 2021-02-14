@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Game\": () => (/* binding */ Game)\n/* harmony export */ });\n/* harmony import */ var _Draw__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Draw */ \"./src/Draw.js\");\n/* harmony import */ var _MathHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MathHelper */ \"./src/MathHelper.js\");\n\r\n\r\n\r\nclass Game {\r\n\r\n    constructor() {\r\n        this._Initialize()\r\n        \r\n        this._Draw = new _Draw__WEBPACK_IMPORTED_MODULE_0__.Draw(this._canvas);\r\n        this._Draw.Draw({\r\n            color: '#ffffff', \r\n            x: 0, \r\n            y: 0, \r\n            width: this._canvasWidth, \r\n            height: this._canvasHeight\r\n        });\r\n\r\n        this._Draw.Draw({\r\n            color: '#333333', \r\n            x: _MathHelper__WEBPACK_IMPORTED_MODULE_1__.MathHelper.GetRandomInt(0, this._rows) * this._scale,\r\n            y: _MathHelper__WEBPACK_IMPORTED_MODULE_1__.MathHelper.GetRandomInt(0, this._columns) * this._scale, \r\n            width: 10, \r\n            height: 10\r\n        });\r\n    }\r\n\r\n    _Initialize() {\r\n        this._canvas = document.getElementById('snake');\r\n        this._canvasWidth = this._canvas.width;\r\n        this._canvasHeight = this._canvas.height;\r\n        this._ctx = this._canvas.getContext('2d');\r\n        this._scale = 10;\r\n        this._rows = this._canvasHeight / this._scale;\r\n        this._columns = this._canvasWidth / this._scale;\r\n    }\r\n\r\n}\n\n//# sourceURL=webpack://js-snake/./src/Game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Game\": () => (/* binding */ Game)\n/* harmony export */ });\n/* harmony import */ var _Draw__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Draw */ \"./src/Draw.js\");\n/* harmony import */ var _Snake__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Snake */ \"./src/Snake.js\");\n\r\n\r\n\r\nclass Game {\r\n\r\n    constructor() {\r\n        this._Initialize()\r\n        \r\n        this._Draw = new _Draw__WEBPACK_IMPORTED_MODULE_0__.Draw(this._canvas);\r\n        this._Draw.Draw({\r\n            color: '#ffffff', \r\n            x: 0, \r\n            y: 0, \r\n            width: this._canvasWidth, \r\n            height: this._canvasHeight\r\n        });\r\n\r\n        this._Draw.Draw(_Snake__WEBPACK_IMPORTED_MODULE_1__.Snake.GetConfig());\r\n    }\r\n\r\n    _Initialize() {\r\n        this._canvas = document.getElementById('snake');\r\n        this._canvasWidth = this._canvas.width;\r\n        this._canvasHeight = this._canvas.height;\r\n        this._ctx = this._canvas.getContext('2d');\r\n        this._scale = 10;\r\n        this._rows = this._canvasHeight / this._scale;\r\n        this._columns = this._canvasWidth / this._scale;\r\n    }\r\n\r\n}\n\n//# sourceURL=webpack://js-snake/./src/Game.js?");
 
 /***/ }),
 
@@ -37,6 +37,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"MathHelper\": () => (/* binding */ MathHelper)\n/* harmony export */ });\nclass MathHelper {\r\n\r\n    constructor() {\r\n\r\n    }\r\n\r\n    /**\r\n     * \r\n     * @param { Minimum value is inclusive } min \r\n     * @param { Maximum value is exclusive } max \r\n     */\r\n    static GetRandomInt(min, max) {\r\n        min = Math.ceil(min);\r\n        max = Math.floor(max);\r\n\r\n        return Math.floor(Math.random() * (max - min) + min);\r\n    }\r\n\r\n}\n\n//# sourceURL=webpack://js-snake/./src/MathHelper.js?");
+
+/***/ }),
+
+/***/ "./src/Snake.js":
+/*!**********************!*\
+  !*** ./src/Snake.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Snake\": () => (/* binding */ Snake)\n/* harmony export */ });\n/* harmony import */ var _MathHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MathHelper */ \"./src/MathHelper.js\");\n\r\n\r\nclass Snake {\r\n\r\n    static GetConfig() {\r\n        return {\r\n            color: '#333333', \r\n            x: _MathHelper__WEBPACK_IMPORTED_MODULE_0__.MathHelper.GetRandomInt(0, 40) * 10,\r\n            y: _MathHelper__WEBPACK_IMPORTED_MODULE_0__.MathHelper.GetRandomInt(0, 40) * 10, \r\n            width: 10, \r\n            height: 10\r\n        }\r\n    };\r\n\r\n}\n\n//# sourceURL=webpack://js-snake/./src/Snake.js?");
 
 /***/ }),
 
