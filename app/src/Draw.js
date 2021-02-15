@@ -18,7 +18,7 @@ export class Draw {
     ClearRectangle(params) {
         this._ctx.beginPath();
         this._ctx.fillStyle = '#ffffff';
-        this._ctx.rect(params.x, params.y, params.width, params.height);
+        this._ctx.rect(params.x, params.y, 10, 10);
         this._ctx.fill();
         this._ctx.closePath();
     }

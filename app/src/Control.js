@@ -12,16 +12,16 @@ export class Control {
         document.addEventListener('keydown', (event) => {
             switch(event.key) {
                 case 'ArrowUp':
-                    this._currentDirection = this._UP;
+                    (this._currentDirection !== this._DOWN) ? this._currentDirection = this._UP : '';
                     break;
                 case 'ArrowDown':
-                    this._currentDirection = this._DOWN;
+                    (this._currentDirection !== this._UP) ? this._currentDirection = this._DOWN : '';
                     break;
                 case 'ArrowLeft':
-                    this._currentDirection = this._LEFT;
+                    (this._currentDirection !== this._RIGHT) ? this._currentDirection = this._LEFT : '';
                     break;
                 case 'ArrowRight':
-                    this._currentDirection = this._RIGHT;
+                    (this._currentDirection !== this._LEFT) ? this._currentDirection = this._RIGHT : '';
                     break;
                 default:
                     break;
@@ -30,7 +30,7 @@ export class Control {
     }
 
     GetCurrentDirection() {
-        return this._currentDirection;
+        return this._currentDirection
     }
 
 }

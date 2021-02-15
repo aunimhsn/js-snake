@@ -11,7 +11,7 @@ class SnakeJS extends Game {
     Play() {
         setInterval(() => {
             this.Game();
-        }, 100)
+        }, 50)
     }
 
 }
