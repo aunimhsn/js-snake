@@ -44,6 +44,17 @@ export class Snake {
     }
 
     /**
+     * Move the entire snake
+     * 
+     * Coordinate representing the snake direction
+     * @param {object} coord { x: number, y: number }
+     */
+    Move(coord) {
+        this.MoveHead(coord);
+        this.MoveTail(coord);
+    }
+
+    /**
      * Coordinate representing the snake direction
      * @param {object} coord { x: number, y: number }
      * 
@@ -54,49 +65,19 @@ export class Snake {
         this._x += coord.x;
         this._y += coord.y;
 
-        // Allow the snake to go throught the canvas size
-        this._x = (this._x === 400) ? 0 : this._x;
-        this._y = (this._y === 400) ? 0 : this._y;
-        this._x = (this._x === -10) ? 390 : this._x;
-        this._y = (this._y === -10) ? 390 : this._y;
-
         this._Draw.DrawRectangle(this.DrawHead());
     }
 
     MoveTail(coord) {
-
         if (this._size > 1) {
             this._Draw.ClearRectangle(this._pathHistory.pop());
-            // let erase = this._pathHistory.pop();
             this._pathHistory.unshift({ x: this._x - coord.x,  y: this._y - coord.y });
-            console.log(this._pathHistory);
-
 
             let tail = this.DrawTail();
             tail.forEach((elem) => {
                 this._Draw.DrawRectangle(elem);
             })
-                
-    
         }
-
-        // this._Draw.DrawRectangle(this.DrawTrace(this._pathHistory[this._pathHistory.length - 1]));
-        
-
-        // if (this._pathHistory.length) {
-        //     let tail = this.DrawTail();
-        //     this._Draw.ClearRectangle(tail[0])
-        //     this._pathHistory[0].x += coord.x;
-        //     this._pathHistory[0].y += coord.y;
-    
-        //     // Allow the snake to go throught the canvas size
-        //     this._pathHistory[0].x = (this._pathHistory[0].y === 400) ? 0 : this._pathHistory[0].x;
-        //     this._pathHistory[0].y = (this._pathHistory[0].y === 400) ? 0 : this._pathHistory[0].y;
-        //     this._pathHistory[0].x = (this._pathHistory[0].x === -10) ? 390 : this._pathHistory[0].x;
-        //     this._pathHistory[0].y = (this._pathHistory[0].y === -10) ? 390 : this._pathHistory[0].y;
-    
-        //     this._Draw.DrawRectangle(tail[0])
-        // }
     }
 
     /**
@@ -116,5 +97,34 @@ export class Snake {
         }
     }
 
+    /**
+     * 
+     * 
+     */
+    HitTail() {
+        let result = false;
+        this._pathHistory.forEach((elem) => {
+            if ((elem.x === this._x) && (elem.y === this._y)) {
+                result =  true;
+            }
+        })
+
+        return result;
+    }
+
+    /**
+     * 
+     * 
+     */
+    HitCanvasBorder() {
+        let result = false;
+        this._pathHistory.forEach((elem) => {
+            if ((elem.x < 0) || (elem.x > 390) || (elem.y < 0) || (elem.y > 390)) {
+                result =  true;
+            }
+        })
+
+        return result;
+    }
 
 }

@@ -9,7 +9,7 @@ export class Candy {
 
     DrawConfig() {
         return {
-            color: '#0e85cf', 
+            color: '#2cdb5d', 
             x: this._x,
             y: this._y, 
             width: 10, 
