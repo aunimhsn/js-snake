@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
 
     <title>SnakeJS</title>
@@ -12,6 +14,16 @@
 <body>
     <main class="container">
         <canvas id="snake" width="400" height="400">Your browser does not support the HTML5 canvas tag.</canvas>
+        <div class="data">
+            <h1>Snake</h1>
+            <h2>VanillaJS & HTML5 Canvas</h2>
+            <p class="score">
+                Score: <span class="score-value">0</span>
+            </p>
+            <p class="high-score">
+                High Score: <span class="high-score-value">0</span>
+            </p>
+        </div>
     </main>
     
     <script src="dist/main.js"></script>

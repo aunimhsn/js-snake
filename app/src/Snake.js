@@ -94,7 +94,11 @@ export class Snake {
 
             candy.ResetCandyPosition();
             this._Draw.DrawRectangle(candy.DrawConfig());
+
+            return true;
         }
+
+        return false;
     }
 
     /**
