@@ -8,7 +8,8 @@ export class Snake {
         this._x = MathHelper.GetRandomInt(0, 40) * 10;
         this._y = MathHelper.GetRandomInt(0, 40) * 10;
         this._size = 2;
-        this._pathHistory = [{ x: this._x - 10,  y: this._y - 0 }]; // Tail logic
+        this._tail = [{ x: this._x - 10,  y: this._y - 0 }]; // Tail logic
+        this._snake = this._tail.concat([{ x: this._x, y: this._y }]); // Don't draw candy on the snake !
 
         this._Draw = new Draw(document.getElementById('snake'));
     }
@@ -28,10 +29,10 @@ export class Snake {
      * @returns Array
      */
     DrawTail() {
-        let tail = [];
+        let drawTail = [];
 
-        this._pathHistory.forEach((elem) => {
-            tail.push({
+        this._tail.forEach((elem) => {
+            drawTail.push({
                 color: '#999999', 
                 x: elem.x,
                 y: elem.y, 
@@ -40,7 +41,7 @@ export class Snake {
             });
         });
 
-        return tail;
+        return drawTail;
     }
 
     /**
@@ -70,11 +71,11 @@ export class Snake {
 
     MoveTail(coord) {
         if (this._size > 1) {
-            this._Draw.ClearRectangle(this._pathHistory.pop());
-            this._pathHistory.unshift({ x: this._x - coord.x,  y: this._y - coord.y });
+            this._Draw.ClearRectangle(this._tail.pop());
+            this._tail.unshift({ x: this._x - coord.x,  y: this._y - coord.y });
 
-            let tail = this.DrawTail();
-            tail.forEach((elem) => {
+            let drawTail = this.DrawTail();
+            drawTail.forEach((elem) => {
                 this._Draw.DrawRectangle(elem);
             })
         }
@@ -90,9 +91,9 @@ export class Snake {
         // Detect collision
         if ((this._x === candy._x) && (this._y === candy._y)) {
             this._size++;
-            this._pathHistory.push({ x: this._x - coord.x,  y: this._y - coord.y });
+            this._tail.push({ x: this._x - coord.x,  y: this._y - coord.y });
 
-            candy.ResetCandyPosition();
+            candy.ResetCandyPosition(this._snake);
             this._Draw.DrawRectangle(candy.DrawConfig());
 
             return true;
@@ -107,7 +108,7 @@ export class Snake {
      */
     HitTail() {
         let result = false;
-        this._pathHistory.forEach((elem) => {
+        this._tail.forEach((elem) => {
             if ((elem.x === this._x) && (elem.y === this._y)) {
                 result =  true;
             }
@@ -121,14 +122,7 @@ export class Snake {
      * 
      */
     HitCanvasBorder() {
-        let result = false;
-        this._pathHistory.forEach((elem) => {
-            if ((elem.x < 0) || (elem.x > 390) || (elem.y < 0) || (elem.y > 390)) {
-                result =  true;
-            }
-        })
-
-        return result;
+        return ((this._x < 0) || (this._x > 390) || (this._y < 0) || (this._y > 390))
     }
 
 }

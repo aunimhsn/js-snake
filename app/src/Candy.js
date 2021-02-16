@@ -17,9 +17,23 @@ export class Candy {
         }
     }
 
-    ResetCandyPosition() {
+    /**
+     * 
+     * 
+     * @param {[{ x, y }]} snake current snake position
+     */
+    ResetCandyPosition(snake) {
         this._x = MathHelper.GetRandomInt(0, 40) * 10;
         this._y = MathHelper.GetRandomInt(0, 40) * 10;
+
+        for(let i = 0 ; i < snake.length ; i++) {
+            if ((this._x == snake[i].x) && (this._y == snake[i].y)) {
+                this._x = MathHelper.GetRandomInt(0, 40) * 10;
+                this._y = MathHelper.GetRandomInt(0, 40) * 10;
+
+                i = 0; // Reset position until the candy is on the snake
+            }
+        }
     }
 
 }
